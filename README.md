@@ -1,6 +1,6 @@
 # VideoToAudio
 
-A simple Python desktop tool for converting video files into audio using FFmpeg.
+A Python tool for converting video files into audio using FFmpeg.
 
 ## Requirements
 
