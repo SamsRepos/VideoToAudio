@@ -53,11 +53,17 @@ def batch_convert(input_path: Path, output_dir: Path, codec="mp3", bitrate="192k
         return []
     
     results = []
-
+    
+    if input_path.is_dir():
+        base_path = input_path
+        output_root = output_dir / input_path.name
+    else:
+        base_path = input_path.parent
+        output_root = output_dir
+    
     for i, file in enumerate(files, start=1):
-        base_path = input_path if input_path.is_dir() else input_path.parent
         relative_path = file.relative_to(base_path)
-        output_file = (output_dir / relative_path).with_suffix(f".{codec}")
+        output_file = (output_root / relative_path).with_suffix(f".{codec}")
 
         log("")
         log(f"Converting file {i} of {total}")
